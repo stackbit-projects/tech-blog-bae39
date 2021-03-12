@@ -1,0 +1,27 @@
+---
+label: Blog
+hide_body: true
+fields:
+- type: text
+  name: title
+  label: Title
+  description: The title of the page.
+  config:
+    required: true
+- type: field_group
+  name: seo
+  label: Seo
+  fields:
+  - type: include
+    name: include_stackbit_page_meta
+    label: Page meta data
+    template: stackbit_page_meta
+- type: text
+  name: layout
+  label: Layout
+  hidden: true
+  default: blog
+  config:
+    required: true
+pages:
+- blog/_index.md

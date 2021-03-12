@@ -1,0 +1,74 @@
+---
+label: Site Configuration
+hide_body: true
+fields:
+- type: text
+  name: title
+  label: Title
+  description: Site title
+  config:
+    required: true
+- type: text
+  name: baseURL
+  label: Base URL
+  description: Hostname (and path) to the root
+  hidden: true
+- type: field_group
+  name: params
+  label: Params
+  description: Site parameters
+  config:
+    required: true
+  fields:
+  - type: text
+    name: domain
+    label: Domain
+    description: 'The domain of your site, including the protocol, e.g. https://mysite.com/'
+  - type: file
+    name: favicon
+    label: Favicon
+    description: A square icon that represents your website.
+  - type: select
+    name: layout_style
+    label: Layout Style
+    description: The style of the theme layout.
+    default: simple
+    config:
+      required: true
+      source:
+        type: custom
+      options:
+      - simple
+      - overflow
+  - type: select
+    name: palette
+    label: Color Palette
+    description: The color palette used for the site.
+    default: green
+    config:
+      required: true
+      source:
+        type: custom
+      options:
+      - blue
+      - green
+      - orange
+      - violet
+  - type: field_group
+    name: header
+    label: Header Configuration
+    fields:
+    - type: include
+      name: include_header
+      label: Header Configuration
+      template: header
+  - type: field_group
+    name: footer
+    label: Footer Configuration
+    fields:
+    - type: include
+      name: include_footer
+      label: Footer Configuration
+      template: footer
+pages:
+- config.yaml

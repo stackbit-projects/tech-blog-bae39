@@ -1,0 +1,22 @@
+{{ define "content" }}
+
+  <article class="post page post-full">
+    <header class="post-header inner-sm">
+      <h1 class="post-title underline">{{ .Params.title }}</h1>
+      {{ if .Params.subtitle }}
+      <div class="post-subtitle inner-sm">
+        {{ $.Params.subtitle | safeHTML }}
+      </div>
+      {{ end }}
+    </header>
+    {{ if .Params.img_path }}
+    <div class="post-image">
+      <img src="{{ $.Params.img_path | relURL }}" alt="{{ $.Params.img_alt }}" />
+    </div>
+    {{ end }}
+    <div class="post-content inner-sm">
+      {{ .Content }}
+    </div>
+  </article><!-- .post -->
+
+{{ end }}

@@ -1,0 +1,70 @@
+<header id="masthead" class="site-header {{ .Site.Params.header.background }}">
+  <div class="site-header-wrap">
+    <div class="site-header-inside">
+
+      <div class="site-branding">
+        {{ if .Site.Params.header.profile_img }}
+        <p class="profile">
+          <a href='{{ "/" | relURL }}'><img src="{{ $.Site.Params.header.profile_img | relURL }}"
+              class="avatar" alt="{{ $.Site.Params.header.profile_img_alt }}" /></a>
+        </p><!-- .profile -->
+        {{ end }}
+        <div class="site-identity">
+          <p class="site-title"><a href='{{ "/" | relURL }}'>{{ .Site.Params.header.title }}</a></p>
+          {{ if .Site.Params.header.tagline }}
+          <p class="site-description">{{ $.Site.Params.header.tagline }}</p>
+          {{ end }}
+        </div><!-- .site-identity -->
+        {{ if or .Site.Params.header.has_nav .Site.Params.header.has_social }}
+        <button id="menu-toggle" class="menu-toggle"><span class="screen-reader-text">Menu</span><span class="icon-menu"
+            aria-hidden="true"></span></button>
+        {{ end }}
+      </div><!-- .site-branding -->
+
+      {{ if or .Site.Params.header.has_nav .Site.Params.header.has_social }}
+      <nav id="main-navigation" class="site-navigation" aria-label="Main Navigation">
+        <div class="site-nav-wrap">
+          <div class="site-nav-inside">
+
+            {{ if $.Site.Params.header.has_nav }}
+            <ul class="menu">
+              {{ range $action := $.Site.Params.header.nav_links }}
+                {{ $pageUrl := trim $.URL "/" }}
+                {{ $actionUrl := trim $action.url "/" }}
+                <li class="menu-item{{ if eq $pageUrl $actionUrl }} current-menu-item{{ end }}{{ if eq $action.style "button" }} menu-button{{ end }}">
+                  <a href="{{ $action.url | relURL }}"
+                    {{ if $action.new_window }} target="_blank"{{ end }}
+                    {{ if or $action.new_window $action.no_follow }} rel="{{ if $action.new_window }}noopener {{ end }}{{ if $action.no_follow }}nofollow{{ end }}"{{ end }}
+                    {{ if eq $action.style "button" }}class="button"{{ end }}>{{ $action.label }}</a>
+                </li>
+              {{ end }}
+            </ul><!-- .menu -->
+            {{ end }}
+            {{ if $.Site.Params.header.has_social }}
+            <div class="social-links">
+              {{ range $action := $.Site.Params.header.social_links }}
+              {{ if $action }}
+              <a href="{{ $action.url | relURL }}"
+                {{ if $action.new_window }} target="_blank"{{ end }}
+                {{ if or $action.new_window $action.no_follow }} rel="{{ if $action.new_window }}noopener {{ end }}{{ if $action.no_follow }}nofollow{{ end }}"{{ end }}
+                {{ if eq $action.style "icon" }}class="button button-icon"{{ end }}>
+                {{ if and (eq $action.style "icon") $action.icon_class }}
+                  {{ $include_dict := dict "icon" $action.icon_class }}
+                  {{ partial "icon.html" $include_dict }}
+                  <span class="screen-reader-text">{{ $action.label }}</span>
+                {{ else }}
+                {{ $action.label }}
+                {{ end }}
+              </a>
+              {{ end }}
+              {{ end }}
+            </div><!-- .social-links -->
+            {{ end }}
+          </div><!-- .site-nav-inside -->
+        </div><!-- .site-nav-wrap -->
+      </nav><!-- .site-navigation -->
+      {{ end }}
+
+    </div><!-- .site-header-inside -->
+  </div><!-- .site-header-wrap -->
+</header><!-- .site-header -->

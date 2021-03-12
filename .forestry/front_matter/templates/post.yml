@@ -1,0 +1,64 @@
+---
+label: Post
+hide_body: false
+fields:
+- type: text
+  name: title
+  label: Title
+  description: The title of the post.
+  config:
+    required: true
+- type: text
+  name: subtitle
+  label: Subtitle
+  description: The text shown just below the post title.
+- type: datetime
+  name: date
+  label: Date
+  config:
+    required: true
+- type: file
+  name: thumb_img_path
+  label: Image (blog feed)
+  description: The image shown in the blog feed.
+- type: text
+  name: thumb_img_alt
+  label: Image alt text (blog feed)
+  description: The alt text of the blog feed image.
+- type: file
+  name: content_img_path
+  label: Image (single post)
+  description: The image shown in the single post.
+- type: text
+  name: content_img_alt
+  label: Image alt text (single post)
+  description: The alt text of the single post image.
+- type: text
+  name: excerpt
+  label: Excerpt
+  description: The excerpt of the post displayed in the blog feed.
+- type: field_group
+  name: seo
+  label: Seo
+  fields:
+  - type: include
+    name: include_stackbit_page_meta
+    label: Page meta data
+    template: stackbit_page_meta
+- type: text
+  name: layout
+  label: Layout
+  hidden: true
+  default: post
+  config:
+    required: true
+pages:
+- posts/basic-rules-for-walking-in-the-mountains.md
+- posts/best-waves-surfing-spain.md
+- posts/fox-village-in-japan.md
+- posts/fragments-of-iceland.md
+- posts/grand-canyon.md
+- posts/interior-designer.md
+- posts/japan.md
+- posts/the-ride-in-the-woods.md
+- posts/working-from-home.md

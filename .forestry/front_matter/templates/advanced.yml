@@ -1,0 +1,45 @@
+---
+label: Advanced Page
+hide_body: true
+fields:
+- type: text
+  name: title
+  label: Title
+  description: The title of the page.
+  config:
+    required: true
+- type: boolean
+  name: hide_title
+  label: Hide page title
+  default: true
+- type: text
+  name: excerpt
+  label: Excerpt
+  description: The excerpt of the page displayed in meta data.
+- type: blocks
+  name: sections
+  label: Sections
+  description: Page sections
+  template_types:
+  - section_content
+  - section_form
+  - section_hero
+  - section_posts
+- type: field_group
+  name: seo
+  label: Seo
+  fields:
+  - type: include
+    name: include_stackbit_page_meta
+    label: Page meta data
+    template: stackbit_page_meta
+- type: text
+  name: layout
+  label: Layout
+  hidden: true
+  default: advanced
+  config:
+    required: true
+pages:
+- contact.md
+- _index.md

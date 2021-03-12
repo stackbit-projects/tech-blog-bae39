@@ -1,0 +1,15 @@
+<footer id="colophon" class="site-footer inner-sm">
+  <p class="site-info">
+    {{ if .Site.Params.footer.content }}
+    <span class="copyright">{{ $.Site.Params.footer.content | safeHTML }}</span>
+    {{ end }}
+    {{ range $action := .Site.Params.footer.links }}
+    <a href="{{ $action.url | relURL }}"
+      {{ if $action.new_window }} target="_blank"{{ end }}
+      {{ if or $action.new_window $action.no_follow }} rel="{{ if $action.new_window }}noopener {{ end }}{{ if $action.no_follow }}nofollow{{ end }}"{{ end }}
+      {{ if eq $action.style "button" }}class="button"{{ end }}>{{ $action.label }}</a>
+    {{ end }}
+  </p><!-- .site-info -->
+  <a id="to-top" class="to-top" href="#page"><span class="icon-arrow-up" aria-hidden="true"></span><span
+      class="screen-reader-text">Back to top</span></a>
+</footer><!-- .site-footer -->

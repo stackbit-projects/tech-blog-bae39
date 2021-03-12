@@ -1,0 +1,39 @@
+{{ $section := .section }}
+<section id="{{ $section.section_id }}" class="block block-posts">
+  {{ if $section.title }}
+  <h2 class="block-title underline inner-sm">{{ $section.title }}</h2>
+  {{ end }}
+  <div class="post-feed">
+    <div class="post-feed-inside">
+      {{ $display_posts := ((.Site.GetPage "section" "/posts").Pages).ByDate.Reverse }}
+      {{ $recent_posts := $display_posts | first $section.posts_number }}
+      {{ range $post := $recent_posts }}
+      <article class="post post-card">
+        <div class="post-inside">
+          {{ if $post.Params.thumb_img_path }}
+          <a class="post-thumbnail" href="{{ $post.URL }}"><img src="{{ $post.Params.thumb_img_path | relURL }}" alt="{{ $post.Params.thumb_img_alt }}" /></a>
+          {{ end }}
+          <header class="post-header">
+            <h3 class="post-title"><a href="{{ $post.URL }}" rel="bookmark">{{ $post.Params.title }}</a></h3>
+          </header>
+          {{ if $post.Params.excerpt }}
+          <div class="post-content">
+            <p>{{ $post.Params.excerpt }}</p>
+          </div>
+          {{ end }}
+          <footer class="post-meta">
+            <time class="published"
+              datetime="{{ $post.Date | dateFormat "2006-01-02 15:04" }}">{{ $post.Date | dateFormat "January 02, 2006" }}</time>
+          </footer>
+        </div>
+      </article><!-- .post -->
+      {{ end }}
+    </div>
+  </div><!-- .post-feed -->
+  {{ if $section.actions }}
+  <div class="block-buttons inner-sm">
+    {{ $include_dict := dict "actions" $section.actions }}
+    {{ partial "cta_buttons.html" $include_dict }}
+  </div>
+  {{ end }}
+</section><!-- .block -->
